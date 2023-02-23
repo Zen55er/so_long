@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/23 11:43:43 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/23 12:15:31 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include "../libft/libft.h"
+# include "../libft_new/libft.h"
 # include "../mlx-linux/mlx.h"
 
 typedef struct s_coord
