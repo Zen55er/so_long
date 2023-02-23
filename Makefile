@@ -2,11 +2,11 @@ NAME =			so_long.a
 LIB =			so_long.h
 LIBFT_DIR =		../libft_new
 LIBFT =			../libft_new/libft.a
-SR =			maps.c validate_map.c
+SRC =			maps.c validate_map.c
 SRC_OBJS =		$(SRC:.c=.o)
 CC = 			@cc
 CFLAGS = 		-Wall -Wextra -Werror -g
-MLXFLAGS = 		-L../mlx_linux/libmlx_Linux.a -lX11 -lXext -lm
+MLXFLAGS = 		-lmlx -lX11 -lXext -lm
 
 all:		$(NAME)
 
