@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   baseline_for_mlx.c                                 :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 10:02:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 13:46:27 by gacorrei         ###   ########.fr       */
+/*   Created: 2023/02/24 14:28:11 by gacorrei          #+#    #+#             */
+/*   Updated: 2023/02/24 14:28:34 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include "../mlx-linux/mlx.h"
+#include "so_long.h"
 
-int	main(void)
+char	**free_map(char **map, int xi)
 {
-	void	*mlx_ptr;
-
-	mlx_ptr = mlx_init();
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
+	while (xi >= 0)
+	{
+		free(map[xi]);
+		xi--;
+	}
+	free(map);
+	return (0);
 }

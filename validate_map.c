@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 09:43:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 13:26:22 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:34:17 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,39 +97,12 @@ int	check_pec(char **map, int x, int y)
 		}
 	}
 	if (flag_p == 1 && flag_e == 1 && flag_c > 0)
-		return (1);
-	else if (flag_c < 2)
-		return (ft_printf("Error, less than 2 collectibles in map\n"));
+		return (0);
 	else
-		return (ft_printf("Error, more than 1 start or exit in map\n"));
-}
-
-/*Finds starting coordinates*/
-t_coord	find_pos(char **map, int x, int y, char c)
-{
-	int		i;
-	int		j;
-	t_coord	pos;
-
-	i = -1;
-	while (++i < x)
-	{
-		j = -1;
-		while (++j < y)
-		{
-			if (map[i][j] == c)
-				break ;
-		}
-		if (map[i][j] == c)
-			break ;
-	}
-	pos.x = i;
-	pos.y = j;
-	return (pos);
+		return (ft_printf("More than 1 start/exit or no collectibles in map\n"));
 }
 
 /*Checks if there is a valid path to the exit*/
-/*CHANGE VALUE TO A OR JUST KEEP GOING UNTIL FINDING THE EXIT?*/
 void	check_path(char **map, t_coord size, t_coord start)
 {
 	if ((map[start.x][start.y] != '0' && map[start.x][start.y] != 'C'

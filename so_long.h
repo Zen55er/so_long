@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 12:49:49 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:33:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@ typedef struct s_coord
 }				t_coord;
 
 /*maps*/
-char	**free_map(char **map, int xi);
 char	**make_map(char **base, int x, int y);
-char	**maps(int id);
-int		validate_map(char **map, int x, int y);
 void	reset_vals(char **map, int x, int y);
+t_coord	find_pos(char **map, int x, int y, char c);
+int		validate_map(char **map, int x, int y);
+char	**maps(int id);
 
 /*validate_map*/
 int		check_rectangle(char **map, int x, int y);
 int		check_values(char **map, int x, int y);
 int		check_boundary(char **map, int x, int y);
 int		check_pec(char **map, int x, int y);
-t_coord	find_pos(char **map, int x, int y, char c);
 void	check_path(char **map, t_coord size, t_coord start);
+
+/*utils*/
+char	**free_map(char **map, int xi);
 
 #endif

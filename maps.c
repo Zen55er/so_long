@@ -6,22 +6,11 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 13:26:51 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:28:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-char	**free_map(char **map, int xi)
-{
-	while (xi >= 0)
-	{
-		free(map[xi]);
-		xi--;
-	}
-	free(map);
-	return (0);
-}
 
 /* static void	debug(char **map, int xi, int y)
 {
@@ -78,6 +67,7 @@ char	**make_map(char **base, int x, int y)
 	return (map);
 }
 
+/*Resets values in map to originals*/
 void	reset_vals(char **map, int x, int y)
 {
 	int	j;
@@ -100,6 +90,30 @@ void	reset_vals(char **map, int x, int y)
 	return ;
 }
 
+/*Finds coordinates for specific chars*/
+t_coord	find_pos(char **map, int x, int y, char c)
+{
+	int		i;
+	int		j;
+	t_coord	pos;
+
+	i = -1;
+	while (++i < x)
+	{
+		j = -1;
+		while (++j < y)
+		{
+			if (map[i][j] == c)
+				break ;
+		}
+		if (map[i][j] == c)
+			break ;
+	}
+	pos.x = i;
+	pos.y = j;
+	return (pos);
+}
+
 /*Validates map parameters*/
 int	validate_map(char **map, int x, int y)
 {
@@ -107,30 +121,21 @@ int	validate_map(char **map, int x, int y)
 	t_coord	exit;
 
 	if (!check_rectangle(map, x, y))
-	{
-		ft_printf("MAP IS NOT A RECTANGLE\n");
-		return (0);
-	}
+		return (ft_printf("MAP IS NOT A RECTANGLE\n"));
 	if (!check_values(map, x, y))
-	{
-		ft_printf("FOUND FORBIDDEN VALUE\n");
-		return (0);
-	}
+		return (ft_printf("FOUND FORBIDDEN VALUE\n"));
 	if (!check_boundary(map, x, y))
-	{
-		ft_printf("FOUND BORDER WITH VALUE OTHER THAN 1\n");
-		return (0);
-	}
-	if (check_pec(map, x, y) != 1)
-		return (0);
+		return (ft_printf("FOUND BORDER WITH VALUE OTHER THAN 1\n"));
+	if (check_pec(map, x, y))
+		return (1);
 	start = find_pos(map, x, y, 'P');
 	exit = find_pos(map, x, y, 'E');
 	check_path(map, (t_coord){x, y}, start);
 	if (map[exit.x][exit.y] == 'e')
 		reset_vals(map, x, y);
 	else
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }
 
 /*Chooses baseline for map to use, sets size and call map generating function*/
@@ -163,7 +168,7 @@ char	**maps(int id)
 		y = 20;
 	}
 	map = make_map(base, x, y);
-	if (!validate_map(map, x, y))
+	if (validate_map(map, x, y))
 		return (0);
 	return (map);
 }
