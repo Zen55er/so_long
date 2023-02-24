@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 10:31:36 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:26:51 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	**free_map(char **map, int xi)
 	int	j;
 
 	i = -1;
-	ft_printf("MAP AFTER FILLING EVERY ROW, BEFORE RETURN\n");
+	ft_printf("MAP AFTER FILLING EVERY ROW\n");
 	while (++i < x)
 	{
 		j = -1;
@@ -78,13 +78,39 @@ char	**make_map(char **base, int x, int y)
 	return (map);
 }
 
+void	reset_vals(char **map, int x, int y)
+{
+	int	j;
+
+	while (--x)
+	{
+		j = y;
+		while (--j)
+		{
+			if (map[x][j] == 'e')
+				map[x][j] = 'E';
+			if (map[x][j] == 'p')
+				map[x][j] = 'P';
+			if (map[x][j] == 'c')
+				map[x][j] = 'C';
+			if (map[x][j] == 'o')
+				map[x][j] = '0';
+		}
+	}
+	return ;
+}
+
 /*Validates map parameters*/
 int	validate_map(char **map, int x, int y)
 {
 	t_coord	start;
-	t_coord	size;
-	t_coord	chars;
+	t_coord	exit;
 
+	if (!check_rectangle(map, x, y))
+	{
+		ft_printf("MAP IS NOT A RECTANGLE\n");
+		return (0);
+	}
 	if (!check_values(map, x, y))
 	{
 		ft_printf("FOUND FORBIDDEN VALUE\n");
@@ -97,12 +123,12 @@ int	validate_map(char **map, int x, int y)
 	}
 	if (check_pec(map, x, y) != 1)
 		return (0);
-	start = find_start(map, x, y);
-	size.x = x;
-	size.y = y;
-	chars.x = 48;
-	chars.y = 67;
-	if (!check_path(map, size, start, chars))
+	start = find_pos(map, x, y, 'P');
+	exit = find_pos(map, x, y, 'E');
+	check_path(map, (t_coord){x, y}, start);
+	if (map[exit.x][exit.y] == 'e')
+		reset_vals(map, x, y);
+	else
 		return (0);
 	return (1);
 }

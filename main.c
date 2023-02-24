@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:48:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/23 11:56:27 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:29:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ int	main(void)
 	{
 		j = -1;
 		while (++j < 20)
-			ft_printf("%i", map[i][j]);
+			ft_printf("%c", map[i][j]);
 		ft_printf("\n");
 	}
+	free_map(map, 10);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/23 12:15:31 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 12:49:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,14 @@ char	**free_map(char **map, int xi);
 char	**make_map(char **base, int x, int y);
 char	**maps(int id);
 int		validate_map(char **map, int x, int y);
+void	reset_vals(char **map, int x, int y);
 
 /*validate_map*/
+int		check_rectangle(char **map, int x, int y);
 int		check_values(char **map, int x, int y);
 int		check_boundary(char **map, int x, int y);
 int		check_pec(char **map, int x, int y);
-t_coord	find_start(char **map, int x, int y);
-int		check_path(char **map, t_coord size, t_coord start, t_coord chars);
+t_coord	find_pos(char **map, int x, int y, char c);
+void	check_path(char **map, t_coord size, t_coord start);
 
 #endif

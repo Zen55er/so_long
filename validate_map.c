@@ -6,11 +6,30 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 09:43:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 10:31:15 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:26:22 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*Check if map is rectangular*/
+int	check_rectangle(char **map, int x, int y)
+{
+	int	i;
+
+	if (x == y)
+		return (0);
+	while (--x)
+	{
+		i = -1;
+		while (++i < y)
+		{
+			if (map[x][i] == '\0')
+				return (0);
+		}
+	}
+	return (1);
+}
 
 /*Checks if map only has allowed charaters*/
 int	check_values(char **map, int x, int y)
@@ -86,11 +105,11 @@ int	check_pec(char **map, int x, int y)
 }
 
 /*Finds starting coordinates*/
-t_coord	find_start(char **map, int x, int y)
+t_coord	find_pos(char **map, int x, int y, char c)
 {
 	int		i;
 	int		j;
-	t_coord	start;
+	t_coord	pos;
 
 	i = -1;
 	while (++i < x)
@@ -98,28 +117,38 @@ t_coord	find_start(char **map, int x, int y)
 		j = -1;
 		while (++j < y)
 		{
-			if (map[i][j] == 'P')
+			if (map[i][j] == c)
 				break ;
 		}
+		if (map[i][j] == c)
+			break ;
 	}
-	start.x = i;
-	start.y = j;
-	return (start);
+	pos.x = i;
+	pos.y = j;
+	return (pos);
 }
 
 /*Checks if there is a valid path to the exit*/
 /*CHANGE VALUE TO A OR JUST KEEP GOING UNTIL FINDING THE EXIT?*/
-int	check_path(char **map, t_coord size, t_coord start, t_coord chars)
+void	check_path(char **map, t_coord size, t_coord start)
 {
-	if (map[start.x][start.y] == 'E')
-		return (1);
-	if ((map[start.x][start.y] != chars.x && map[start.x][start.y] != chars.y)
+	if ((map[start.x][start.y] != '0' && map[start.x][start.y] != 'C'
+	&& map[start.x][start.y] != 'P' && map[start.x][start.y] != 'E')
 	|| start.x < 0 || start.y < 0 || start.x >= size.x || start.y >= size.y)
-		return (0);
-	//map[start.x][start.y] = 'A';
-	check_path(map, size, (t_coord){start.x + 1, start.y}, chars);
-	check_path(map, size, (t_coord){start.x - 1, start.y}, chars);
-	check_path(map, size, (t_coord){start.x, start.y + 1}, chars);
-	check_path(map, size, (t_coord){start.x, start.y - 1}, chars);
-	return (0);
+		return ;
+	if (map[start.x][start.y] == 'E')
+	{
+		map[start.x][start.y] = 'e';
+		return ;
+	}
+	if (map[start.x][start.y] == 'P')
+		map[start.x][start.y] = 'p';
+	if (map[start.x][start.y] == 'C')
+		map[start.x][start.y] = 'c';
+	if (map[start.x][start.y] == '0')
+		map[start.x][start.y] = 'o';
+	check_path(map, size, (t_coord){start.x + 1, start.y});
+	check_path(map, size, (t_coord){start.x - 1, start.y});
+	check_path(map, size, (t_coord){start.x, start.y + 1});
+	check_path(map, size, (t_coord){start.x, start.y - 1});
 }
