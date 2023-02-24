@@ -6,7 +6,7 @@ SRC =			maps.c validate_map.c
 SRC_OBJS =		$(SRC:.c=.o)
 CC = 			@cc
 CFLAGS = 		-Wall -Wextra -Werror -g
-MLXFLAGS = 		-lmlx -lX11 -lXext -lm
+MLXFLAGS = 		-L../mlx-linux/libmlx_Linux.a -lX11 -lXext -lm
 
 all:		$(NAME)
 

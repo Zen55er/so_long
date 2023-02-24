@@ -6,21 +6,24 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 09:43:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/23 11:35:34 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/24 10:31:15 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*Checks if map only has alloed charaters*/
+/*Checks if map only has allowed charaters*/
 int	check_values(char **map, int x, int y)
 {
+	int	j;
+
 	while (--x)
 	{
-		while (--y)
+		j = y;
+		while (--j)
 		{
-			if (map[x][y] != '0' && map[x][y] != '1' && map[x][y] != 'P'
-				&& map[x][y] != 'E' && map[x][y] != 'C')
+			if (map[x][j] != '0' && map[x][j] != '1' && map[x][j] != 'P'
+				&& map[x][j] != 'E' && map[x][j] != 'C')
 				return (0);
 		}
 	}
@@ -56,24 +59,28 @@ int	check_pec(char **map, int x, int y)
 	int	flag_p;
 	int	flag_e;
 	int	flag_c;
+	int	j;
 
 	flag_p = 0;
 	flag_e = 0;
 	flag_c = 0;
 	while (--x)
 	{
-		while (--y)
+		j = y;
+		while (--j)
 		{
-			if (map[x][y] == 'P')
+			if (map[x][j] == 'P')
 				flag_p++;
-			else if (map[x][y] == 'E')
+			else if (map[x][j] == 'E')
 				flag_e++;
-			else if (map[x][y] == 'C')
+			else if (map[x][j] == 'C')
 				flag_c++;
 		}
 	}
 	if (flag_p == 1 && flag_e == 1 && flag_c > 0)
 		return (1);
+	else if (flag_c < 2)
+		return (ft_printf("Error, less than 2 collectibles in map\n"));
 	else
 		return (ft_printf("Error, more than 1 start or exit in map\n"));
 }
@@ -114,4 +121,5 @@ int	check_path(char **map, t_coord size, t_coord start, t_coord chars)
 	check_path(map, size, (t_coord){start.x - 1, start.y}, chars);
 	check_path(map, size, (t_coord){start.x, start.y + 1}, chars);
 	check_path(map, size, (t_coord){start.x, start.y - 1}, chars);
+	return (0);
 }
