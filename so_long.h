@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 13:37:00 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:48:58 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,6 @@
 # include "../libft_new/libft.h"
 # include "../mlx-linux/mlx.h"
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
-# endif
-
 typedef struct s_coord
 {
 	int	x;
@@ -36,7 +32,7 @@ char	**make_map(int fd, int x, int y);
 void	reset_vals(char **map, int x, int y);
 t_coord	find_pos(char **map, int x, int y, char c);
 int		validate_map(char **map, int x, int y);
-char	**maps(int id);
+char	**maps(int id, t_coord size);
 
 /*validate_map*/
 int		check_rectangle(char **map, int x, int y);
@@ -48,6 +44,7 @@ void	check_path(char **map, t_coord size, t_coord start);
 /*utils*/
 char	**free_map(char **map, int xi);
 int		check_coll(char **map, int x, int y);
-
+int		check_ber(char *filename);
+t_coord	get_map_size(int fd);
 
 #endif

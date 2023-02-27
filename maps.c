@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 13:38:04 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:48:50 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,51 +132,13 @@ int	validate_map(char **map, int x, int y)
 	return (0);
 }
 
-/*Chooses baseline for map to use, sets size and call map generating function*/
-char	**maps(int fd)
+/*Gets size, starts map generation and paramenter validation*/
+char	**maps(int fd, t_coord size)
 {
-	int		x;
-	int		y;
 	char	**map;
 
-	x = 10;
-	y = 20;
-	map = make_map(fd, x, y);
-	if (validate_map(map, x, y))
+	map = make_map(fd, size.x, size.y);
+	if (validate_map(map, size.x, size.y))
 		return (0);
 	return (map);
 }
-
-/* char	**maps(int id)
-{
-	int		x;
-	int		y;
-	char	*base[] = {
-		"11111111111111111111",
-		"10C000000000000000E1",
-		"10101010101010101C11",
-		"10011001100110011001",
-		"10001110001110001111",
-		"10001110C01110001111",
-		"10011001100110011001",
-		"10101010101010101011",
-		"1P0000000000000C0001",
-		"11111111111111111111"
-	};
-	char	**map;
-
-	if (id == 1)
-	{
-		x = 10;
-		y = 20;
-	}
-	else
-	{
-		x = 10;
-		y = 20;
-	}
-	map = make_map(base, x, y);
-	if (validate_map(map, x, y))
-		return (0);
-	return (map);
-} */

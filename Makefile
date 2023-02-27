@@ -2,7 +2,7 @@ NAME =			so_long.a
 LIB =			so_long.h
 LIBFT_DIR =		../libft_new
 LIBFT =			../libft_new/libft.a
-SRC =			maps.c validate_map.c utils.c
+SRC =			main.c maps.c validate_map.c utils.c
 SRC_OBJS =		$(SRC:.c=.o)
 CC = 			@cc
 CFLAGS = 		-Wall -Wextra -Werror -g
