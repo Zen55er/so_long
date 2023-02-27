@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:28:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 09:12:06 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:46:36 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_coll(char **map, int x, int y)
 	while (--x)
 	{
 		j = -1;
-		while (j < y)
+		while (++j < y)
 		{
 			if (map[x][j] == 'C')
 				return (ft_printf("Some collectibles out of reach\n"));

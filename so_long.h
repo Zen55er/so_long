@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 09:12:04 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:37:00 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@
 # include "../libft_new/libft.h"
 # include "../mlx-linux/mlx.h"
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
+
 typedef struct s_coord
 {
 	int	x;
@@ -28,7 +32,7 @@ typedef struct s_coord
 }				t_coord;
 
 /*maps*/
-char	**make_map(char **base, int x, int y);
+char	**make_map(int fd, int x, int y);
 void	reset_vals(char **map, int x, int y);
 t_coord	find_pos(char **map, int x, int y, char c);
 int		validate_map(char **map, int x, int y);

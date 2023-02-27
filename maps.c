@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 09:12:36 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 13:38:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,23 @@
 } */
 
 /*Allocates memory for the 2d array and fills it according to chosen base*/
-char	**make_map(char **base, int x, int y)
+char	**make_map(int fd, int x, int y)
 {
 	int		xi;
-	int		yi;
 	char	**map;
 
-	xi = 0;
+	xi = -1;
 	map = (char **)malloc(sizeof(char *) * x);
 	if (!map)
 		return (0);
-	while (xi < x)
+	while (++xi < x)
 	{
 		map[xi] = (char *)malloc(sizeof(char) * (y + 1));
 		if (!map[xi])
 			return (free_map(map, xi));
-		yi = 0;
-		while (yi < y)
-		{
-			map[xi][yi] = base[xi][yi];
-			yi++;
-		}
-		map[xi][yi] = '\0';
-		xi++;
+		map[xi] = get_next_line(fd);
+		if (!map[xi] && xi < x)
+			return (free_map(map, xi));
 	}
 	return (map);
 }
@@ -139,7 +133,21 @@ int	validate_map(char **map, int x, int y)
 }
 
 /*Chooses baseline for map to use, sets size and call map generating function*/
-char	**maps(int id)
+char	**maps(int fd)
+{
+	int		x;
+	int		y;
+	char	**map;
+
+	x = 10;
+	y = 20;
+	map = make_map(fd, x, y);
+	if (validate_map(map, x, y))
+		return (0);
+	return (map);
+}
+
+/* char	**maps(int id)
 {
 	int		x;
 	int		y;
@@ -171,4 +179,4 @@ char	**maps(int id)
 	if (validate_map(map, x, y))
 		return (0);
 	return (map);
-}
+} */
