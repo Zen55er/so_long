@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 14:28:32 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:12:36 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int	validate_map(char **map, int x, int y)
 	start = find_pos(map, x, y, 'P');
 	exit = find_pos(map, x, y, 'E');
 	check_path(map, (t_coord){x, y}, start);
-	if (map[exit.x][exit.y] == 'e')
+	if (map[exit.x][exit.y] == 'e' && !check_coll(map, x, y))
 		reset_vals(map, x, y);
 	else
 		return (1);

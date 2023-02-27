@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 14:33:52 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/02/27 09:12:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ void	check_path(char **map, t_coord size, t_coord start);
 
 /*utils*/
 char	**free_map(char **map, int xi);
+int		check_coll(char **map, int x, int y);
+
 
 #endif
