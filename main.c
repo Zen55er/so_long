@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:48:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 11:53:52 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/01 13:52:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 	close(fd);
 	if (!map)
 		return (0);
+	startup();
 	free_map(map, size.x - 1);
 	return (1);
 }

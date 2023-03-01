@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   baseline_for_mlx.c                                 :+:      :+:    :+:   */
+/*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/22 10:02:10 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 14:20:13 by gacorrei         ###   ########.fr       */
+/*   Created: 2023/03/01 12:34:08 by gacorrei          #+#    #+#             */
+/*   Updated: 2023/03/01 12:43:26 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./mlx-linux/mlx.h"
-#include <stdlib.h>
+#include "so_long.h"
 
-int	main(void)
+/*Creates initial window*/
+void	startup(void)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*init;
+	void	*window;
 
-	mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
-		return (1);
-	win_ptr = mlx_new_window(mlx_ptr, 1920, 1080, "My first window!");
-	if (win_ptr == NULL)
-	{
-		free(win_ptr);
-		return (1);
-	}
-	while (1)
-		;
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
+	init = mlx_init();
+	window = mlx_new_window(init, 1600, 900, "Initial");
+	mlx_loop(init);
+	return ;
 }

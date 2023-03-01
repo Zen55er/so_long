@@ -6,12 +6,13 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:28:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 11:50:07 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/01 12:40:11 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/*CHecks the final chars of the filename to make sure the extension is .ber*/
 int	check_ber(char *filename)
 {
 	int	len;
@@ -23,6 +24,7 @@ int	check_ber(char *filename)
 	return (0);
 }
 
+/*Frees each line in the map and then the map itself*/
 char	**free_map(char **map, int xi)
 {
 	while (xi >= 0)
@@ -34,6 +36,7 @@ char	**free_map(char **map, int xi)
 	return (0);
 }
 
+/*Calculates height and width of selected map*/
 t_coord	get_map_size(int fd)
 {
 	int		buf;
@@ -58,6 +61,7 @@ t_coord	get_map_size(int fd)
 	return (size);
 }
 
+/*CHecks if there is any collectible that could not be reached*/
 int	check_coll(char **map, int x, int y)
 {
 	int	j;
