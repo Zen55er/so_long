@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 11:48:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 11:51:15 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:53:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	main(int argc, char **argv)
 	if (check_ber(argv[1]))
 		return (ft_printf("Map extension must be .ber\n"));
 	fd = open(argv[1], O_RDONLY);
+	if (fd == -1)
+		return (ft_printf("File does not exist\n"));
 	size = get_map_size(fd);
 	close(fd);
 	fd = open(argv[1], O_RDONLY);
