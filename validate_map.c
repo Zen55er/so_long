@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 09:43:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/24 14:34:17 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:39:11 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,23 @@
 int	check_rectangle(char **map, int x, int y)
 {
 	int	i;
+	int	line0;
+	int	check;
 
 	if (x == y)
 		return (0);
+	i = -1;
+	line0 = 0;
+	while (map[0][++i] && map[0][i] != '\n')
+		line0++;
 	while (--x)
 	{
 		i = -1;
-		while (++i < y)
-		{
-			if (map[x][i] == '\0')
-				return (0);
-		}
+		check = 0;
+		while (map[x][++i] && map[x][i] != '\n')
+			check++;
+		if (check != line0)
+			return (0);
 	}
 	return (1);
 }
@@ -36,10 +42,10 @@ int	check_values(char **map, int x, int y)
 {
 	int	j;
 
-	while (--x)
+	while (--x >= 0)
 	{
 		j = y;
-		while (--j)
+		while (--j >= 0)
 		{
 			if (map[x][j] != '0' && map[x][j] != '1' && map[x][j] != 'P'
 				&& map[x][j] != 'E' && map[x][j] != 'C')
@@ -99,7 +105,7 @@ int	check_pec(char **map, int x, int y)
 	if (flag_p == 1 && flag_e == 1 && flag_c > 0)
 		return (0);
 	else
-		return (ft_printf("More than 1 start/exit or no collectibles in map\n"));
+		return (ft_printf("Wrong ammount of start/exit or no collectibles\n"));
 }
 
 /*Checks if there is a valid path to the exit*/
@@ -110,10 +116,7 @@ void	check_path(char **map, t_coord size, t_coord start)
 	|| start.x < 0 || start.y < 0 || start.x >= size.x || start.y >= size.y)
 		return ;
 	if (map[start.x][start.y] == 'E')
-	{
 		map[start.x][start.y] = 'e';
-		return ;
-	}
 	if (map[start.x][start.y] == 'P')
 		map[start.x][start.y] = 'p';
 	if (map[start.x][start.y] == 'C')

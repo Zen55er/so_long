@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 14:48:58 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:49:27 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_coord
 }				t_coord;
 
 /*maps*/
-char	**make_map(int fd, int x, int y);
+char	**make_map(int fd, int x);
 void	reset_vals(char **map, int x, int y);
 t_coord	find_pos(char **map, int x, int y, char c);
 int		validate_map(char **map, int x, int y);

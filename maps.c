@@ -6,41 +6,14 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/02/27 14:48:50 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:29:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* static void	debug(char **map, int xi, int y)
-{
-	int	j;
-
-	j = -1;
-	while (++j < y)
-		ft_printf("%c", map[xi][j]);
-	ft_printf("\n");
-} */
-
-/* static void	debug2(char **map, int x, int y)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	ft_printf("MAP AFTER FILLING EVERY ROW\n");
-	while (++i < x)
-	{
-		j = -1;
-		while (++j < y)
-			ft_printf("%c", map[i][j]);
-		ft_printf("\n");
-	}
-	ft_printf("\n");
-} */
-
-/*Allocates memory for the 2d array and fills it according to chosen base*/
-char	**make_map(int fd, int x, int y)
+/*Allocates memory for the 2d array and creates map*/
+char	**make_map(int fd, int x)
 {
 	int		xi;
 	char	**map;
@@ -51,10 +24,12 @@ char	**make_map(int fd, int x, int y)
 		return (0);
 	while (++xi < x)
 	{
-		map[xi] = (char *)malloc(sizeof(char) * (y + 1));
-		if (!map[xi])
-			return (free_map(map, xi));
 		map[xi] = get_next_line(fd);
+		if (!map[xi] && xi == 0)
+		{
+			ft_printf("Map file is empty\n");
+			return (free_map(map, -1));
+		}
 		if (!map[xi] && xi < x)
 			return (free_map(map, xi));
 	}
@@ -115,20 +90,22 @@ int	validate_map(char **map, int x, int y)
 	t_coord	exit;
 
 	if (!check_rectangle(map, x, y))
-		return (ft_printf("MAP IS NOT A RECTANGLE\n"));
+		return (ft_printf("Map is not a rectangle\n"));
 	if (!check_values(map, x, y))
-		return (ft_printf("FOUND FORBIDDEN VALUE\n"));
+		return (ft_printf("Found forbidden value in map\n"));
 	if (!check_boundary(map, x, y))
-		return (ft_printf("FOUND BORDER WITH VALUE OTHER THAN 1\n"));
+		return (ft_printf("Border contains value(s) other than '1'\n"));
 	if (check_pec(map, x, y))
 		return (1);
 	start = find_pos(map, x, y, 'P');
 	exit = find_pos(map, x, y, 'E');
 	check_path(map, (t_coord){x, y}, start);
-	if (map[exit.x][exit.y] == 'e' && !check_coll(map, x, y))
+	if (!check_coll(map, x, y))
+		return (ft_printf("Some collectibles are out of reach\n"));
+	if (map[exit.x][exit.y] == 'e')
 		reset_vals(map, x, y);
 	else
-		return (1);
+		return (ft_printf("Could not find path to exit\n"));
 	return (0);
 }
 
@@ -137,8 +114,10 @@ char	**maps(int fd, t_coord size)
 {
 	char	**map;
 
-	map = make_map(fd, size.x, size.y);
-	if (validate_map(map, size.x, size.y))
+	map = make_map(fd, size.x);
+	if (!map)
 		return (0);
+	if (validate_map(map, size.x, size.y))
+		return (free_map(map, size.x - 1));
 	return (map);
 }
