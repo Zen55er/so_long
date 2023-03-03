@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/03 11:56:17 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:10:47 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <X11/keysym.h>>
 # include "../libft_new/libft.h"
 # include "./mlx_linux/mlx.h"
 
@@ -34,17 +35,12 @@ typedef struct s_data
 }				t_data;
 
 /*Key definitions*/
-# define KEY_PRESS		1
-# define KEY_RELEASE	0
 # define KEY_ESC		65307
 # define KEY_W			119
 # define KEY_A			97
 # define KEY_S			115
 # define KEY_D			100
-# define KEY_UP			119
-# define KEY_LEFT		97
-# define KEY_DOWN		115
-# define KEY_RIGHT		100
+# define MOUSE_LEFT		100
 
 /*maps*/
 char	**make_map(int fd, int x);
@@ -73,6 +69,8 @@ int		startup(void);
 
 /*window_utils*/
 int		no_event(void *ptr);
-int		key_press(int key, t_data *data);
+int		close_window(t_data *data);
+int		key_release(int key, t_data *data);
+int		mouse(int button, int x, int y, t_data *data);
 
 #endif

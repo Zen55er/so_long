@@ -15,7 +15,7 @@ all: $(NAME)
 $(NAME): $(SRC_OBJS) 
 			@$(MAKE) --no-print-directory -C $(LIBMLX_DIR)
 			@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-			@$(CC) $(^) $(MLX_FLAGS) -o $(@) $(LIBFT)
+			@$(CC) $(^) $(MLX_FLAGS) -o $(@) $(LIBFT) -fsanitize=address
 
 %.o: %.c $(MLX_LIB)
 			@$(CC) $(MLX_INCLUDE) -c $(^) -o $(@)
