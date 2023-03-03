@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   window.c                                           :+:      :+:    :+:   */
+/*   window_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 12:34:08 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/03 11:56:08 by gacorrei         ###   ########.fr       */
+/*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
+/*   Updated: 2023/03/03 11:49:52 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*Creates initial window*/
-int	startup(void)
+int	no_event(void *ptr)
 {
-	t_data	data;
+	return (0);
+}
 
-	data.init = mlx_init();
-	if (!data.init)
-		return (1);
-	data.window = mlx_new_window(data.init, 1600, 900, "Initial");
-	if (!data.window)
-		return (free_window(data.init));
-	mlx_loop_hook(data.init, &no_event, &data);
-	mlx_key_hook(data.window, &key_press, &data);
-	mlx_loop(data.init);
-	return (free_window(data.init));
+/*Actions for key presses*/
+int	key_press(int key, t_data *data)
+{
+	if (key == KEY_ESC)
+		mlx_destroy_window(data->init, data->window);
+	return (0);
 }

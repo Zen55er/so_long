@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:28:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 12:40:11 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:55:53 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,13 @@ char	**free_map(char **map, int xi)
 	}
 	free(map);
 	return (0);
+}
+
+int	free_window(void *init)
+{
+	if (init)
+		mlx_destroy_display(init);
+	free(init);
 }
 
 /*Calculates height and width of selected map*/

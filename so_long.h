@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 13:53:03 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:56:17 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,32 @@
 # include <stdlib.h>
 # include <string.h>
 # include "../libft_new/libft.h"
-# include "mlx.h"
+# include "./mlx_linux/mlx.h"
 
 typedef struct s_coord
 {
 	int	x;
 	int	y;
 }				t_coord;
+
+typedef struct s_data
+{
+	void		*init;
+	void		*window;
+}				t_data;
+
+/*Key definitions*/
+# define KEY_PRESS		1
+# define KEY_RELEASE	0
+# define KEY_ESC		65307
+# define KEY_W			119
+# define KEY_A			97
+# define KEY_S			115
+# define KEY_D			100
+# define KEY_UP			119
+# define KEY_LEFT		97
+# define KEY_DOWN		115
+# define KEY_RIGHT		100
 
 /*maps*/
 char	**make_map(int fd, int x);
@@ -44,11 +63,16 @@ void	check_path(char **map, t_coord size, t_coord start);
 /*utils*/
 int		check_ber(char *filename);
 char	**free_map(char **map, int xi);
+int		free_window(void *init);
 t_coord	get_map_size(int fd);
 int		check_coll(char **map, int x, int y);
 //void	print_map(char **map, int x, int y);
 
 /*window*/
-void	startup(void);
+int		startup(void);
+
+/*window_utils*/
+int		no_event(void *ptr);
+int		key_press(int key, t_data *data);
 
 #endif
