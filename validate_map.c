@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 09:43:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 11:39:11 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/06 09:16:22 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	check_pec(char **map, int x, int y)
 	if (flag_p == 1 && flag_e == 1 && flag_c > 0)
 		return (0);
 	else
-		return (ft_printf("Wrong ammount of start/exit or no collectibles\n"));
+		return (1);
 }
 
 /*Checks if there is a valid path to the exit*/

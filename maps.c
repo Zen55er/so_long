@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/01 11:29:52 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/06 09:20:02 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	**make_map(int fd, int x)
 		map[xi] = get_next_line(fd);
 		if (!map[xi] && xi == 0)
 		{
-			ft_printf("Map file is empty\n");
+			ft_printf("Error\nMap file is empty\n");
 			return (free_map(map, -1));
 		}
 		if (!map[xi] && xi < x)
@@ -90,22 +90,22 @@ int	validate_map(char **map, int x, int y)
 	t_coord	exit;
 
 	if (!check_rectangle(map, x, y))
-		return (ft_printf("Map is not a rectangle\n"));
+		return (ft_printf("Error\nMap is not a rectangle\n"));
 	if (!check_values(map, x, y))
-		return (ft_printf("Found forbidden value in map\n"));
+		return (ft_printf("Error\nFound forbidden value in map\n"));
 	if (!check_boundary(map, x, y))
-		return (ft_printf("Border contains value(s) other than '1'\n"));
+		return (ft_printf("Error\nBorder contains value(s) other than '1'\n"));
 	if (check_pec(map, x, y))
-		return (1);
+		return (ft_printf("Error\nWrong number of start/exit or 0 items\n"));
 	start = find_pos(map, x, y, 'P');
 	exit = find_pos(map, x, y, 'E');
 	check_path(map, (t_coord){x, y}, start);
 	if (!check_coll(map, x, y))
-		return (ft_printf("Some collectibles are out of reach\n"));
+		return (ft_printf("Error\nSome collectibles are out of reach\n"));
 	if (map[exit.x][exit.y] == 'e')
 		reset_vals(map, x, y);
 	else
-		return (ft_printf("Could not find path to exit\n"));
+		return (ft_printf("Error\nCould not find path to exit\n"));
 	return (0);
 }
 
