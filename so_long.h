@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 13:38:57 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:10:33 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	draw_start(t_data data, t_sprites *images, char **map);
 
 /*utils_free*/
 char	**free_map(char **map, int xi);
-int		free_window(void *init);
+int		free_window(t_data data);
 void	free_image(void *init, t_sprites *image);
 int		free_all(t_data data, t_sprites *image, int window, int images);
 
