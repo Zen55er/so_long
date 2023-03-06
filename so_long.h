@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/03 15:10:47 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/06 12:04:09 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,18 @@ typedef struct s_data
 	void		*window;
 }				t_data;
 
-/*Key definitions*/
-# define KEY_ESC		65307
-# define KEY_W			119
-# define KEY_A			97
-# define KEY_S			115
-# define KEY_D			100
-# define MOUSE_LEFT		100
+typedef struct s_sprites
+{
+	void		*floor;
+	void		*wall;
+	void		*closed;
+	void		*open;
+	void		*collect;
+	void		*player;
+}				t_sprites;
+
+/*Sprite size (32 pix)*/
+# define P 32
 
 /*maps*/
 char	**make_map(int fd, int x);
@@ -58,19 +63,26 @@ void	check_path(char **map, t_coord size, t_coord start);
 
 /*utils*/
 int		check_ber(char *filename);
-char	**free_map(char **map, int xi);
-int		free_window(void *init);
 t_coord	get_map_size(int fd);
 int		check_coll(char **map, int x, int y);
-//void	print_map(char **map, int x, int y);
 
 /*window*/
-int		startup(void);
+int		startup(char **map);
 
 /*window_utils*/
 int		no_event(void *ptr);
 int		close_window(t_data *data);
 int		key_release(int key, t_data *data);
-int		mouse(int button, int x, int y, t_data *data);
+
+/*images*/
+int		open_images(void *init, t_sprites *images);
+void	choose_image(t_data data, t_sprites *images, t_coord pos, char **map);
+void	draw_start(t_data data, t_sprites *images, char **map);
+
+/*utils_free*/
+char	**free_map(char **map, int xi);
+int		free_window(void *init);
+void	free_image(void *init, t_sprites *image);
+int		free_all(t_data data, t_sprites *image, int window, int images);
 
 #endif

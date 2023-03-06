@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 09:20:02 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/06 11:26:07 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	**make_map(int fd, int x)
 	char	**map;
 
 	xi = -1;
-	map = (char **)malloc(sizeof(char *) * x);
+	map = (char **)malloc(sizeof(char *) * (x + 1));
 	if (!map)
 		return (0);
 	while (++xi < x)
@@ -33,6 +33,7 @@ char	**make_map(int fd, int x)
 		if (!map[xi] && xi < x)
 			return (free_map(map, xi));
 	}
+	map[xi] = 0;
 	return (map);
 }
 
