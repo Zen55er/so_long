@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 09:26:00 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:47:55 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_data
 	void		*window;
 	t_sprites	*images;
 	char		**map;
-	t_coord		*start;
+	t_coord		pos;
 }				t_data;
 
 /*Sprite size (32 pix)*/
@@ -70,7 +70,7 @@ t_coord	get_map_size(int fd);
 int		check_coll(char **map, int x, int y);
 
 /*window*/
-int		startup(char **map);
+int		startup(char **map, t_coord size);
 
 /*window_utils*/
 int		no_event(void *ptr);
@@ -87,5 +87,8 @@ char	**free_map(char **map, int xi);
 int		free_window(t_data *data);
 void	free_image(t_data *data);
 int		free_all(t_data *data, int window, int images);
+
+/*movement*/
+void	step(t_data *data, int x, int y);
 
 #endif
