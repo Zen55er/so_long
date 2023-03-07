@@ -23,19 +23,21 @@ void	step(t_data *data, int x, int y)
 	if (data->map[data->pos.x + x][data->pos.y + y] == 'C')
 	{
 		data->map[data->pos.x + x][data->pos.y + y] = 'c';
-		data->found_coll++;
+		if (data->++found_coll == data->total_coll)
+			open_exit(data);
 	}
-	if (data->map[data->pos.x + x][data->pos.y + y] == 'e')
-		win(data);
 	mlx_put_image_to_window(data->init, data->window,
 		data->images->floor, data->pos.y * P, data->pos.x * P);
 	data->pos.x += x;
 	data->pos.y += y;
-	mlx_put_image_to_window(data->init, data->window,
-		data->images->player, data->pos.y * P, data->pos.x * P);
-	if (data->found_coll == data->total_coll)
-		open_exit(data);
-	moves++;
-	ft_printf("Moves: %i\n", moves);
+	ft_printf("Moves: %i\n", ++moves);
+	if (data->map[data->pos.x][data->pos.y] == 'e')
+	{
+		mlx_put_image_to_window(data->init, data->window,
+			data->images->end, data->pos.y * P, data->pos.x * P);
+		return ;
+	}
+		mlx_put_image_to_window(data->init, data->window,
+			data->images->player, data->pos.y * P, data->pos.x * P);
 	return ;
 }

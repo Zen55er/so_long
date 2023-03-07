@@ -49,8 +49,3 @@ void	open_exit(t_data *data)
 	data->map[exit.x][exit.y] = 'e';
 	return ;
 }
-
-void	win(t_data *data)
-{
-	
-}

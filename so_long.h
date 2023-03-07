@@ -81,7 +81,6 @@ int		no_event(void *ptr);
 int		close_window(t_data *data);
 int		key_release(int key, t_data *data);
 void	open_exit(t_data *data);
-void	win(t_data *data);
 
 /*images*/
 int		open_images(t_data *data);
