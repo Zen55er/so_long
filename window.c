@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:08 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 09:48:45 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 10:53:16 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	startup(char **map, t_coord size)
 		return (free_all(&data, 1, 0));
 	data.map = map;
 	data.pos = find_pos(data.map, size.x, size.y, 'P');
+	data.size = size;
+	data.total_coll = count_coll(data.map, size.x, size.y);
+	data.found_coll = 0;
 	draw_start(&data, map);
 	mlx_loop_hook(data.init, no_event, &data);
 	mlx_hook(data.window, 2, 1L << 0, key_release, &data);

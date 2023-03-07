@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 10:00:15 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 11:04:10 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,20 @@ int	key_release(int key, t_data *data)
 	else if (key == XK_d)
 		step(data, 0, 1);
 	return (0);
+}
+
+void	open_exit(t_data *data)
+{
+	t_coord	exit;
+
+	exit = find_pos(data->map, data->size.x, data->size.y, 'E');
+	mlx_put_image_to_window(data->init, data->window,
+		data->images->open, exit.y * P, exit.x * P);
+	data->map[exit.x][exit.y] = 'e';
+	return ;
+}
+
+void	win(t_data *data)
+{
+	
 }

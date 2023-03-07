@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:28:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 10:30:33 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 10:41:54 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_coord	get_map_size(int fd)
 	return (size);
 }
 
-/*CHecks if there is any collectible that could not be reached*/
+/*Checks if there is any collectible that could not be reached*/
 int	check_coll(char **map, int x, int y)
 {
 	int	j;
@@ -64,4 +64,22 @@ int	check_coll(char **map, int x, int y)
 		}
 	}
 	return (1);
+}
+
+int	count_coll(char **map, int x, int y)
+{
+	int	j;
+	int	total;
+
+	total = 0;
+	while (--x)
+	{
+		j = -1;
+		while (++j < y)
+		{
+			if (map[x][j] == 'C')
+				total++;
+		}
+	}
+	return (total);
 }
