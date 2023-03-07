@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:30:24 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 14:19:48 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:18:43 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,36 +25,36 @@ char	**free_map(char **map, int xi)
 }
 
 /*Frees mlx window*/
-int	free_window(t_data data)
+int	free_window(t_data *data)
 {
-	mlx_destroy_display(data.init);
-	free(data.init);
+	mlx_destroy_display(data->init);
+	free(data->init);
 }
 
 /*Frees images*/
-void	free_image(void *init, t_sprites *image)
+void	free_image(t_data *data)
 {
-	if (image->floor)
-		mlx_destroy_image(init, image->floor);
-	if (image->wall)
-		mlx_destroy_image(init, image->wall);
-	if (image->closed)
-		mlx_destroy_image(init, image->closed);
-	if (image->open)
-		mlx_destroy_image(init, image->open);
-	if (image->collect)
-		mlx_destroy_image(init, image->collect);
-	if (image->player)
-		mlx_destroy_image(init, image->player);
-	free (image);
+	if (data->images->floor)
+		mlx_destroy_image(data->init, data->images->floor);
+	if (data->images->wall)
+		mlx_destroy_image(data->init, data->images->wall);
+	if (data->images->closed)
+		mlx_destroy_image(data->init, data->images->closed);
+	if (data->images->open)
+		mlx_destroy_image(data->init, data->images->open);
+	if (data->images->collect)
+		mlx_destroy_image(data->init, data->images->collect);
+	if (data->images->player)
+		mlx_destroy_image(data->init, data->images->player);
+	free (data->images);
 	return ;
 }
 
 /*Gets ifo on what to free and calls appropriate functions*/
-int	free_all(t_data data, t_sprites *image, int window, int images)
+int	free_all(t_data *data, int window, int images)
 {
 	if (images)
-		free_image(data.init, image);
+		free_image(data);
 	if (window)
 		free_window(data);
 	return (1);

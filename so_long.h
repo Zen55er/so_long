@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 14:10:33 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/07 09:26:00 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
-# include <X11/keysym.h>>
+# include <X11/keysym.h>
 # include "../libft_new/libft.h"
 # include "./mlx_linux/mlx.h"
 
@@ -27,12 +27,6 @@ typedef struct s_coord
 	int	x;
 	int	y;
 }				t_coord;
-
-typedef struct s_data
-{
-	void		*init;
-	void		*window;
-}				t_data;
 
 typedef struct s_sprites
 {
@@ -43,6 +37,15 @@ typedef struct s_sprites
 	void		*collect;
 	void		*player;
 }				t_sprites;
+
+typedef struct s_data
+{
+	void		*init;
+	void		*window;
+	t_sprites	*images;
+	char		**map;
+	t_coord		*start;
+}				t_data;
 
 /*Sprite size (32 pix)*/
 # define P 32
@@ -75,14 +78,14 @@ int		close_window(t_data *data);
 int		key_release(int key, t_data *data);
 
 /*images*/
-int		open_images(void *init, t_sprites **images);
-void	choose_image(t_data data, t_sprites *images, t_coord pos, char **map);
-void	draw_start(t_data data, t_sprites *images, char **map);
+int		open_images(t_data *data);
+void	choose_image(t_data *data, t_coord pos, char **map);
+void	draw_start(t_data *data, char **map);
 
 /*utils_free*/
 char	**free_map(char **map, int xi);
-int		free_window(t_data data);
-void	free_image(void *init, t_sprites *image);
-int		free_all(t_data data, t_sprites *image, int window, int images);
+int		free_window(t_data *data);
+void	free_image(t_data *data);
+int		free_all(t_data *data, int window, int images);
 
 #endif
