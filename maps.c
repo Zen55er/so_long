@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 11:26:07 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:53:13 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ char	**make_map(int fd, int x)
 			return (free_map(map, -1));
 		}
 		if (!map[xi] && xi < x)
+		{
+			ft_printf("Error\nEmpty line on map\n");
 			return (free_map(map, xi));
+		}
 	}
 	map[xi] = 0;
 	return (map);
