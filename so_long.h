@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 10:14:24 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:15:33 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		count_coll(char **map, int x, int y);
 int		startup(char **map, t_coord size);
 
 /*window_utils*/
-int		no_event(void *ptr);
+int		no_event(t_data *data);
 int		close_window(t_data *data);
 int		key_release(int key, t_data *data);
 void	open_exit(t_data *data);
@@ -96,7 +96,8 @@ void	free_image(t_data *data);
 int		free_all(t_data *data, int window, int images);
 
 /*movement*/
-void	step(t_data *data, int x, int y);
+void	wait(t_data *data);
 void	step_cases(t_data *data, int x, int y);
+void	step(t_data *data, int x, int y);
 
 #endif

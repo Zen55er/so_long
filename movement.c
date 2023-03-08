@@ -6,14 +6,14 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 10:12:18 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:17:03 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*Stops time for a bit*/
-void	wait(void)
+/*Stops time for a bit and closes window*/
+void	wait(t_data *data)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,7 @@ void	wait(void)
 			j++;
 		i++;
 	}
-	return ;
+	close_window(data);
 }
 
 /*Handles regular cases and walking over the exit*/
@@ -40,8 +40,6 @@ void	step_cases(t_data *data, int x, int y)
 		mlx_put_image_to_window(data->init, data->window,
 			data->images->player_open, data->pos.y * P, data->pos.x * P);
 		ft_printf("You escaped the dungeon!\n");
-		wait();
-		close_window(data);
 	}
 	else
 		mlx_put_image_to_window(data->init, data->window,

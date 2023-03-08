@@ -6,14 +6,16 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 12:27:34 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 11:15:34 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	no_event(void *ptr)
+int	no_event(t_data *data)
 {
+	if (data->map[data->pos.x][data->pos.y] == 'e')
+		wait(data);
 	return (0);
 }
 
