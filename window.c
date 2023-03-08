@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:08 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 10:53:16 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 10:27:23 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	startup(char **map, t_coord size)
 {
 	t_data		data;
 
+	if (size.y * P > 1920 || size.x * P > 1080)
+		return (ft_printf("Map is too big to fit in window.\n"));
 	data.init = mlx_init();
 	if (!data.init)
 		return (1);
-	data.window = mlx_new_window(data.init, 1600, 900, "So_long");
+	data.window = mlx_new_window(data.init, size.y * P, size.x * P, "So_long");
 	if (!data.window)
 		return (free_all(&data, 1, 0));
 	if (!open_images(&data))

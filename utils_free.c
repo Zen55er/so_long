@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:30:24 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 09:18:43 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 09:32:35 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void	free_image(t_data *data)
 		mlx_destroy_image(data->init, data->images->collect);
 	if (data->images->player)
 		mlx_destroy_image(data->init, data->images->player);
+	if (data->images->player_open)
+		mlx_destroy_image(data->init, data->images->player_open);
+	if (data->images->player_closed)
+		mlx_destroy_image(data->init, data->images->player_closed);
 	free (data->images);
 	return ;
 }

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:46:35 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 09:28:32 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 09:23:42 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int	open_images(t_data *data)
 			"./images/coll.xpm", &s, &s);
 	image->player = mlx_xpm_file_to_image(data->init,
 			"./images/player.xpm", &s, &s);
+	image->player_closed = mlx_xpm_file_to_image(data->init,
+			"./images/player_closed.xpm", &s, &s);
+	image->player_open = mlx_xpm_file_to_image(data->init,
+			"./images/player_open.xpm", &s, &s);
 	data->images = image;
 	return (1);
 }
