@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 11:17:03 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:06:35 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ void	wait(t_data *data)
 		i++;
 	}
 	close_window(data);
+}
+
+void	display_moves(t_data *data, int moves)
+{
+	char	*move;
+	char	*count;
+	int		s;
+
+	s = P;
+	count = ft_itoa(moves);
+	move = ft_strjoin("Moves ", count);
+	mlx_string_put(data->init, data->window, 4, 19, 0255000000, move);
+	free (move);
+	free (count);
+	return ;
 }
 
 /*Handles regular cases and walking over the exit*/
@@ -68,6 +83,7 @@ void	step(t_data *data, int x, int y)
 	data->pos.x += x;
 	data->pos.y += y;
 	ft_printf("Moves: %i\n", ++moves);
+	display_moves(data, moves);
 	step_cases(data, x, y);
 	return ;
 }

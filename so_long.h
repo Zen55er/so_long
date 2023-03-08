@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 11:15:33 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:27:27 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,18 @@ typedef struct s_sprites
 	void		*player_open;
 }				t_sprites;
 
+typedef struct s_sprites2
+{
+	void		*l_counter;
+	void		*r_counter;
+}				t_sprites2;
+
 typedef struct s_data
 {
 	void		*init;
 	void		*window;
 	t_sprites	*images;
+	t_sprites2	*images2;
 	char		**map;
 	t_coord		size;
 	t_coord		pos;
@@ -93,10 +100,11 @@ void	draw_start(t_data *data, char **map);
 char	**free_map(char **map, int xi);	
 int		free_window(t_data *data);
 void	free_image(t_data *data);
-int		free_all(t_data *data, int window, int images);
+int		free_all(t_data *data, int window, int images, int images2);
 
 /*movement*/
 void	wait(t_data *data);
+void	display_moves(t_data *data, int moves);
 void	step_cases(t_data *data, int x, int y);
 void	step(t_data *data, int x, int y);
 

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:08 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 10:27:23 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:35:34 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	startup(char **map, t_coord size)
 		return (1);
 	data.window = mlx_new_window(data.init, size.y * P, size.x * P, "So_long");
 	if (!data.window)
-		return (free_all(&data, 1, 0));
-	if (!open_images(&data))
-		return (free_all(&data, 1, 0));
+		return (free_all(&data, 1, 0, 0));
+	if (!open_images(&data) || !open_images2(&data))
+		return (free_all(&data, 1, 0, 0));
 	data.map = map;
 	data.pos = find_pos(data.map, size.x, size.y, 'P');
 	data.size = size;
@@ -37,5 +37,5 @@ int	startup(char **map, t_coord size)
 	mlx_hook(data.window, 2, 1L << 0, key_release, &data);
 	mlx_hook(data.window, 17, 1L << 0, close_window, &data);
 	mlx_loop(data.init);
-	return (free_all(&data, 1, 1));
+	return (free_all(&data, 1, 1, 1));
 }

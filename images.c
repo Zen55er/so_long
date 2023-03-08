@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:46:35 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 09:23:42 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 13:48:26 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ int	open_images(t_data *data)
 	image->player_open = mlx_xpm_file_to_image(data->init,
 			"./images/player_open.xpm", &s, &s);
 	data->images = image;
+	return (1);
+}
+
+int	open_images2(t_data *data)
+{
+	t_sprites2	*image;
+	int			s;
+
+	s = P;
+	image = (t_sprites2 *)malloc(sizeof(t_sprites2));
+	if (!image)
+		return (0);
+	image->l_counter = mlx_xpm_file_to_image(data->init,
+			"./images/l_counter.xpm", &s, &s);
+	image->r_counter = mlx_xpm_file_to_image(data->init,
+			"./images/r_counter.xpm", &s, &s);
+	data->images2 = image;
 	return (1);
 }
 
@@ -76,5 +93,9 @@ void	draw_start(t_data *data, char **map)
 		while (map[x][++y])
 			choose_image(data, (t_coord){x, y}, map);
 	}
+	mlx_put_image_to_window(data->init, data->window,
+		data->images2->l_counter, 0, 0);
+	mlx_put_image_to_window(data->init, data->window,
+		data->images2->r_counter, P, 0);
 	return ;
 }
