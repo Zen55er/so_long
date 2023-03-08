@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:46:35 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 13:48:26 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:42:01 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,15 @@ void	choose_image(t_data *data, t_coord pos, char **map)
 	return ;
 }
 
+void	draw_counter(t_data *data)
+{
+	mlx_put_image_to_window(data->init, data->window,
+		data->images2->l_counter, 0, 0);
+	mlx_put_image_to_window(data->init, data->window,
+		data->images2->r_counter, P, 0);
+	return ;
+}
+
 /*Iterates through map positions to draw correct image*/
 void	draw_start(t_data *data, char **map)
 {
@@ -93,9 +102,6 @@ void	draw_start(t_data *data, char **map)
 		while (map[x][++y])
 			choose_image(data, (t_coord){x, y}, map);
 	}
-	mlx_put_image_to_window(data->init, data->window,
-		data->images2->l_counter, 0, 0);
-	mlx_put_image_to_window(data->init, data->window,
-		data->images2->r_counter, P, 0);
+	draw_counter(data);
 	return ;
 }

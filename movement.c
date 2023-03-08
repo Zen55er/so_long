@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 14:06:35 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:40:19 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	display_moves(t_data *data, int moves)
 	s = P;
 	count = ft_itoa(moves);
 	move = ft_strjoin("Moves ", count);
+	draw_counter(data);
 	mlx_string_put(data->init, data->window, 4, 19, 0255000000, move);
 	free (move);
 	free (count);
