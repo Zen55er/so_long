@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/01 12:34:08 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 09:18:40 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:03:04 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	startup(char **map, t_coord size)
 		return (free_all(&data, 1, 0, 0));
 	data.map = map;
 	data.pos = find_pos(data.map, size.x, size.y, 'P');
+	data.enemy_pos = find_pos(data.map, size.x, size.y, 'B');
 	data.size = size;
 	data.total_coll = count_coll(data.map, size.x, size.y);
 	data.found_coll = 0;

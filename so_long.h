@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 14:39:01 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:39:31 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ typedef struct s_sprites2
 {
 	void		*l_counter;
 	void		*r_counter;
+	void		*enemy;
+	void		*enemy_closed;
+	void		*enemy_open;
+	void		*dead;
 }				t_sprites2;
 
 typedef struct s_data
@@ -55,6 +59,7 @@ typedef struct s_data
 	char		**map;
 	t_coord		size;
 	t_coord		pos;
+	t_coord		enemy_pos;
 	int			total_coll;
 	int			found_coll;
 }				t_data;
@@ -107,6 +112,14 @@ int		free_all(t_data *data, int window, int images, int images2);
 void	wait(t_data *data);
 void	display_moves(t_data *data, int moves);
 void	step_cases(t_data *data, int x, int y);
+void	dead(t_data *data);
 void	step(t_data *data, int x, int y);
+
+/*enemy*/
+int		count_enemies(char **map, int x, int y);
+int		get_dir(t_data *data);
+void	enemy_step_cases(t_data *data, int x, int y);
+void	enemy_step(t_data *data, int x, int y);
+void	patrol(t_data *data);
 
 #endif

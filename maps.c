@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 09:29:46 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 10:09:53 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ int	validate_map(char **map, int x, int y)
 		return (ft_printf("Error\nBorder contains value(s) other than '1'\n"));
 	if (check_pec(map, x, y))
 		return (ft_printf("Error\nWrong number of start/exit or 0 items\n"));
+	if (count_enemies(map, x, y))
+		return (ft_printf("Error\nMOre than 1 enemy in map\n"));
 	start = find_pos(map, x, y, 'P');
 	exit = find_pos(map, x, y, 'E');
 	check_path(map, (t_coord){x, y}, start);

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:30:24 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 13:24:21 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:40:12 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ void	free_image2(t_data *data)
 		mlx_destroy_image(data->init, data->images2->l_counter);
 	if (data->images2->r_counter)
 		mlx_destroy_image(data->init, data->images2->r_counter);
+	if (data->images2->enemy)
+		mlx_destroy_image(data->init, data->images2->enemy);
+	if (data->images2->enemy_closed)
+		mlx_destroy_image(data->init, data->images2->enemy_closed);
+	if (data->images2->enemy_open)
+		mlx_destroy_image(data->init, data->images2->enemy_open);
+	if (data->images2->dead)
+		mlx_destroy_image(data->init, data->images2->dead);
 	free (data->images2);
 	return ;
 }

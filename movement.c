@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 14:40:19 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:55:18 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	wait(t_data *data)
 	close_window(data);
 }
 
+/*Shows moves in window*/
 void	display_moves(t_data *data, int moves)
 {
 	char	*move;
@@ -62,6 +63,16 @@ void	step_cases(t_data *data, int x, int y)
 			data->images->player, data->pos.y * P, data->pos.x * P);
 }
 
+/*You lose, skill issue*/
+void	dead(t_data *data)
+{
+	mlx_put_image_to_window(data->init, data->window,
+		data->images2->dead, data->pos.y * P, data->pos.x * P);
+	data->pos.x = data->enemy_pos.x;
+	data->pos.y = data->enemy_pos.y;
+	ft_printf("Outplayed by a rat.\n");
+}
+
 /*Executes and counts movements, triggers exit opening*/
 void	step(t_data *data, int x, int y)
 {
@@ -69,6 +80,9 @@ void	step(t_data *data, int x, int y)
 
 	if (data->map[data->pos.x + x][data->pos.y + y] == '1')
 		return ;
+	if (data->pos.x + x == data->enemy_pos.x
+		&& data->pos.y + y == data->enemy_pos.y)
+		return (dead(data));
 	if (data->map[data->pos.x + x][data->pos.y + y] == 'C')
 	{
 		data->map[data->pos.x + x][data->pos.y + y] = 'c';
@@ -83,8 +97,8 @@ void	step(t_data *data, int x, int y)
 			data->images->floor, data->pos.y * P, data->pos.x * P);
 	data->pos.x += x;
 	data->pos.y += y;
-	ft_printf("Moves: %i\n", ++moves);
-	display_moves(data, moves);
+	display_moves(data, ++moves);
 	step_cases(data, x, y);
+	patrol(data);
 	return ;
 }

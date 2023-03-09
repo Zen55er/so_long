@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:46:35 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 14:42:01 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:39:58 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ int	open_images2(t_data *data)
 			"./images/l_counter.xpm", &s, &s);
 	image->r_counter = mlx_xpm_file_to_image(data->init,
 			"./images/r_counter.xpm", &s, &s);
+	image->enemy = mlx_xpm_file_to_image(data->init,
+			"./images/enemy.xpm", &s, &s);
+	image->enemy_closed = mlx_xpm_file_to_image(data->init,
+			"./images/enemy_closed.xpm", &s, &s);
+	image->enemy_open = mlx_xpm_file_to_image(data->init,
+			"./images/enemy_open.xpm", &s, &s);
+	image->dead = mlx_xpm_file_to_image(data->init,
+			"./images/dead.xpm", &s, &s);
 	data->images2 = image;
 	return (1);
 }
@@ -77,6 +85,9 @@ void	choose_image(t_data *data, t_coord pos, char **map)
 	else if (map[pos.x][pos.y] == 'C')
 		mlx_put_image_to_window(data->init, data->window,
 			data->images->collect, pos.y * P, pos.x * P);
+	else if (map[pos.x][pos.y] == 'B')
+		mlx_put_image_to_window(data->init, data->window,
+			data->images2->enemy, pos.y * P, pos.x * P);
 	return ;
 }
 
