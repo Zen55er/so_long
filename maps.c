@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 13:02:37 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/08 10:53:13 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:29:46 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	reset_vals(char **map, int x, int y)
 		{
 			if (map[x][j] == 'e')
 				map[x][j] = 'E';
+			if (map[x][j] == 'b')
+				map[x][j] = 'B';
 			if (map[x][j] == 'p')
 				map[x][j] = 'P';
 			if (map[x][j] == 'c')

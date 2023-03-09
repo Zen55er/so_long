@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 09:43:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/06 09:16:22 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 09:28:49 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_values(char **map, int x, int y)
 		while (--j >= 0)
 		{
 			if (map[x][j] != '0' && map[x][j] != '1' && map[x][j] != 'P'
-				&& map[x][j] != 'E' && map[x][j] != 'C')
+				&& map[x][j] != 'E' && map[x][j] != 'C' && map[x][j] != 'B')
 				return (0);
 		}
 	}
@@ -112,11 +112,14 @@ int	check_pec(char **map, int x, int y)
 void	check_path(char **map, t_coord size, t_coord start)
 {
 	if ((map[start.x][start.y] != '0' && map[start.x][start.y] != 'C'
-	&& map[start.x][start.y] != 'P' && map[start.x][start.y] != 'E')
+	&& map[start.x][start.y] != 'P' && map[start.x][start.y] != 'E'
+	&& map[start.x][start.y] != 'B')
 	|| start.x < 0 || start.y < 0 || start.x >= size.x || start.y >= size.y)
 		return ;
 	if (map[start.x][start.y] == 'E')
 		map[start.x][start.y] = 'e';
+	if (map[start.x][start.y] == 'B')
+		map[start.x][start.y] = 'b';
 	if (map[start.x][start.y] == 'P')
 		map[start.x][start.y] = 'p';
 	if (map[start.x][start.y] == 'C')
