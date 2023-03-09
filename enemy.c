@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:39:52 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 11:45:37 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/09 13:04:09 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,25 @@ int	get_dir(t_data *data)
 {
 	int	dir;
 
-	if (data->enemy_pos.y - 1 == '0' || data->enemy_pos.y - 1 == 'E'
-		|| data->enemy_pos.y - 1 == 'e' || data->enemy_pos.y - 1 == 'B')
+	if (data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == '0'
+	|| data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == 'B'
+	|| data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == 'E'
+	|| data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == 'e')
 		dir = 1;
-	else if (data->enemy_pos.x - 1 == '0' || data->enemy_pos.x - 1 == 'E'
-		|| data->enemy_pos.x - 1 == 'e' || data->enemy_pos.x - 1 == 'B')
+	else if (data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == '0'
+	|| data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == 'B'
+	|| data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == 'E'
+	|| data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == 'e')
 		dir = 3;
-	else if (data->enemy_pos.y + 1 == '0' || data->enemy_pos.y + 1 == 'E'
-		|| data->enemy_pos.y + 1 == 'e' || data->enemy_pos.y + 1 == 'B')
+	else if (data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == '0'
+	|| data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == 'B'
+	|| data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == 'E'
+	|| data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == 'e')
 		dir = 2;
-	else if (data->enemy_pos.x + 1 == '0' || data->enemy_pos.x + 1 == 'E'
-		|| data->enemy_pos.x + 1 == 'e' || data->enemy_pos.x + 1 == 'B')
+	else if (data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == '0'
+	|| data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == 'B'
+	|| data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == 'E'
+	|| data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == 'e')
 		dir = 4;
 	else
 		dir = 0;
@@ -101,7 +109,7 @@ void	patrol(t_data *data)
 		|| (data->pos.x == data->enemy_pos.x
 		&& data->pos.y == data->enemy_pos.y))
 		return ;
-	dir = get_dir;
+	dir = get_dir(data);
 	if (dir == 1)
 		enemy_step(data, 0, -1);
 	else if (dir == 2)
