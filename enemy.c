@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:39:52 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/10 09:56:10 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:04:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,23 +68,32 @@ void	enemy_step(t_data *data, t_coord dir)
 	return ;
 }
 
-/* int	test_step(t_data *data, int x, int y)
+int	test_step(t_data *data, int x, int y)
 {
 	if (data->map[data->enemy_pos.x + x][data->enemy_pos.y + y] == '1'
 	|| data->map[data->enemy_pos.x + x][data->enemy_pos.y + y] == 'C')
 		return (1);
 	return (0);
-} */
+}
 
 /*Starts enemy movement logic*/
 void	patrol(t_data *data)
 {
-	t_coord	dir;
+	static t_coord	dir;
+	int				test;
 
 	if (data->map[data->pos.x][data->pos.y] == 'e'
 		|| (data->pos.x == data->enemy_pos.x
 		&& data->pos.y == data->enemy_pos.y))
 		return ;
+	if (!dir.x && !dir.y)
+		dir = get_dir(data);
+	test = test_step(data, dir.x, dir.y);
+	if (!test)
+	{
+		enemy_step(data, dir);
+		return ;
+	}
 	dir = get_dir(data);
 	enemy_step(data, dir);
 	return ;

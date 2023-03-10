@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/10 09:54:54 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/10 10:00:41 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void	step(t_data *data, int x, int y);
 t_coord	get_dir(t_data *data);
 void	enemy_step_cases(t_data *data, int x, int y);
 void	enemy_step(t_data *data, t_coord dir);
-//int		test_step(t_data *data, int x, int y);
+int		test_step(t_data *data, int x, int y);
 void	patrol(t_data *data);
 
 #endif
