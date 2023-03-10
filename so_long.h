@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 11:39:31 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/10 09:54:54 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int		check_ber(char *filename);
 t_coord	get_map_size(int fd);
 int		check_coll(char **map, int x, int y);
 int		count_coll(char **map, int x, int y);
+int		count_enemies(char **map, int x, int y);
 
 /*window*/
 int		startup(char **map, t_coord size);
@@ -116,10 +117,10 @@ void	dead(t_data *data);
 void	step(t_data *data, int x, int y);
 
 /*enemy*/
-int		count_enemies(char **map, int x, int y);
-int		get_dir(t_data *data);
+t_coord	get_dir(t_data *data);
 void	enemy_step_cases(t_data *data, int x, int y);
-void	enemy_step(t_data *data, int x, int y);
+void	enemy_step(t_data *data, t_coord dir);
+//int		test_step(t_data *data, int x, int y);
 void	patrol(t_data *data);
 
 #endif

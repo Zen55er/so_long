@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 14:28:11 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/07 10:41:54 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/10 09:25:23 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	check_coll(char **map, int x, int y)
 	return (1);
 }
 
+/*Counts number of collectibles*/
 int	count_coll(char **map, int x, int y)
 {
 	int	j;
@@ -82,4 +83,28 @@ int	count_coll(char **map, int x, int y)
 		}
 	}
 	return (total);
+}
+
+/*Counts number of enemy entities (There can only be one)*/
+int	count_enemies(char **map, int x, int y)
+{
+	int	count;
+	int	i;
+	int	j;
+
+	count = 0;
+	i = -1;
+	while (++i < x)
+	{
+		j = -1;
+		while (++j < y)
+		{
+			if (map[i][j] == 'B')
+				count++;
+		}
+	}
+	if (count > 1)
+		return (1);
+	else
+		return (0);
 }

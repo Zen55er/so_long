@@ -6,63 +6,31 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:39:52 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 13:04:09 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/10 09:56:10 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*Counts number of enemy entities (There can only be one)*/
-int	count_enemies(char **map, int x, int y)
-{
-	int	count;
-	int	i;
-	int	j;
-
-	count = 0;
-	i = -1;
-	while (++i < x)
-	{
-		j = -1;
-		while (++j < y)
-		{
-			if (map[i][j] == 'B')
-				count++;
-		}
-	}
-	if (count > 1)
-		return (1);
-	else
-		return (0);
-}
-
 /*Finds enemy movement direction*/
-int	get_dir(t_data *data)
+t_coord	get_dir(t_data *data)
 {
-	int	dir;
+	t_coord	dir;
 
-	if (data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == '0'
-	|| data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == 'B'
-	|| data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == 'E'
-	|| data->map[data->enemy_pos.x][data->enemy_pos.y - 1] == 'e')
-		dir = 1;
-	else if (data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == '0'
-	|| data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == 'B'
-	|| data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == 'E'
-	|| data->map[data->enemy_pos.x - 1][data->enemy_pos.y] == 'e')
-		dir = 3;
-	else if (data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == '0'
-	|| data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == 'B'
-	|| data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == 'E'
-	|| data->map[data->enemy_pos.x][data->enemy_pos.y + 1] == 'e')
-		dir = 2;
-	else if (data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == '0'
-	|| data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == 'B'
-	|| data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == 'E'
-	|| data->map[data->enemy_pos.x + 1][data->enemy_pos.y] == 'e')
-		dir = 4;
+	if (data->map[data->enemy_pos.x][data->enemy_pos.y - 1] != '1'
+	&& data->map[data->enemy_pos.x][data->enemy_pos.y - 1] != 'C')
+		dir = (t_coord){0, -1};
+	else if (data->map[data->enemy_pos.x - 1][data->enemy_pos.y] != '1'
+	&& data->map[data->enemy_pos.x - 1][data->enemy_pos.y] != 'C')
+		dir = (t_coord){-1, 0};
+	else if (data->map[data->enemy_pos.x][data->enemy_pos.y + 1] != '1'
+	&& data->map[data->enemy_pos.x][data->enemy_pos.y + 1] != 'C')
+		dir = (t_coord){0, 1};
+	else if (data->map[data->enemy_pos.x + 1][data->enemy_pos.y] != '1'
+	&& data->map[data->enemy_pos.x + 1][data->enemy_pos.y] != 'C')
+		dir = (t_coord){1, 0};
 	else
-		dir = 0;
+		dir = (t_coord){0, 0};
 	return (dir);
 }
 
@@ -83,7 +51,7 @@ void	enemy_step_cases(t_data *data, int x, int y)
 }
 
 /*Handles enemy movement*/
-void	enemy_step(t_data *data, int x, int y)
+void	enemy_step(t_data *data, t_coord dir)
 {
 	if (data->map[data->enemy_pos.x][data->enemy_pos.y] == 'E')
 		mlx_put_image_to_window(data->init, data->window,
@@ -94,29 +62,30 @@ void	enemy_step(t_data *data, int x, int y)
 	else
 		mlx_put_image_to_window(data->init, data->window,
 			data->images->floor, data->enemy_pos.y * P, data->enemy_pos.x * P);
-	data->enemy_pos.x += x;
-	data->enemy_pos.y += y;
-	enemy_step_cases(data, x, y);
+	data->enemy_pos.x += dir.x;
+	data->enemy_pos.y += dir.y;
+	enemy_step_cases(data, dir.x, dir.y);
 	return ;
 }
+
+/* int	test_step(t_data *data, int x, int y)
+{
+	if (data->map[data->enemy_pos.x + x][data->enemy_pos.y + y] == '1'
+	|| data->map[data->enemy_pos.x + x][data->enemy_pos.y + y] == 'C')
+		return (1);
+	return (0);
+} */
 
 /*Starts enemy movement logic*/
 void	patrol(t_data *data)
 {
-	int	dir;
+	t_coord	dir;
 
 	if (data->map[data->pos.x][data->pos.y] == 'e'
 		|| (data->pos.x == data->enemy_pos.x
 		&& data->pos.y == data->enemy_pos.y))
 		return ;
 	dir = get_dir(data);
-	if (dir == 1)
-		enemy_step(data, 0, -1);
-	else if (dir == 2)
-		enemy_step(data, 0, 1);
-	else if (dir == 3)
-		enemy_step(data, -1, 0);
-	else if (dir == 4)
-		enemy_step(data, 1, 0);
+	enemy_step(data, dir);
 	return ;
 }
