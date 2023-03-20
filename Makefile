@@ -4,7 +4,7 @@ LIBFT_DIR =		../libft_new
 LIBFT =			../libft_new/libft.a
 LIBMLX_DIR =		./mlx_linux
 MLX_INCLUDE = 	-Imlx_linux
-SRC =			main.c maps.c validate_map.c utils.c window.c window_utils.c \
+SRC =			main.c maps.c validate_map.c utils.c window.c \
 				utils_free.c images.c movement.c enemy.c
 SRC_OBJS =		$(SRC:.c=.o)
 CC = 			@cc
@@ -13,13 +13,10 @@ MLX_FLAGS = 	-L$(LIBMLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(SRC_OBJS) 
+$(NAME): $(SRC) 
 			@$(MAKE) --no-print-directory -C $(LIBMLX_DIR)
 			@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 			@$(CC) $(^) $(MLX_FLAGS) -o $(@) $(LIBFT) -fsanitize=address
-
-%.o: %.c $(MLX_LIB)
-			@$(CC) $(MLX_INCLUDE) -c $(^) -o $(@)
 
 clean:
 			@rm -f $(SRC_OBJS)

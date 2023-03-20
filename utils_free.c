@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:30:24 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 11:40:12 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/20 10:44:40 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**free_map(char **map, int xi)
 }
 
 /*Frees mlx window*/
-int	free_window(t_data *data)
+void	free_window(t_data *data)
 {
 	mlx_destroy_display(data->init);
 	free(data->init);
