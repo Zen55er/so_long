@@ -13,13 +13,13 @@ MLX_FLAGS = 	-L$(LIBMLX_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 
 all: $(NAME)
 
-$(NAME): $(SRC) 
+$(NAME):	$(SRC)
 			@$(MAKE) --no-print-directory -C $(LIBMLX_DIR)
 			@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
 			@$(CC) $(^) $(MLX_FLAGS) -o $(@) $(LIBFT) -fsanitize=address
 
 clean:
-			@rm -f $(SRC_OBJS)
+			@rm -f
 			@$(MAKE) --no-print-directory -C $(LIBFT_DIR) clean
 			@$(MAKE) --no-print-directory -C $(LIBMLX_DIR) clean
 
