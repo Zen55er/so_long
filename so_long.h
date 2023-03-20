@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/10 10:00:41 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/20 09:30:22 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,14 @@ void	open_exit(t_data *data);
 
 /*images*/
 int		open_images(t_data *data);
+int		open_images2(t_data *data);
 void	choose_image(t_data *data, t_coord pos, char **map);
 void	draw_counter(t_data *data);
 void	draw_start(t_data *data, char **map);
 
 /*utils_free*/
 char	**free_map(char **map, int xi);	
-int		free_window(t_data *data);
+void	free_window(t_data *data);
 void	free_image(t_data *data);
 int		free_all(t_data *data, int window, int images, int images2);
 
