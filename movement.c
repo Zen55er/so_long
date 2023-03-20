@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 10:38:26 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/09 13:23:07 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:15:14 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	display_moves(t_data *data, int moves)
 }
 
 /*Handles regular cases and walking over the exit*/
-void	step_cases(t_data *data, int x, int y)
+void	step_cases(t_data *data)
 {
 	if (data->map[data->pos.x][data->pos.y] == 'E')
 		mlx_put_image_to_window(data->init, data->window,
@@ -98,7 +98,7 @@ void	step(t_data *data, int x, int y)
 	data->pos.x += x;
 	data->pos.y += y;
 	display_moves(data, ++moves);
-	step_cases(data, x, y);
+	step_cases(data);
 	patrol(data);
 	return ;
 }

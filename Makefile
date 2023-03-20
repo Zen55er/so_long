@@ -16,7 +16,7 @@ all: $(NAME)
 $(NAME):	$(SRC)
 			@$(MAKE) --no-print-directory -C $(LIBMLX_DIR)
 			@$(MAKE) --no-print-directory -C $(LIBFT_DIR)
-			@$(CC) $(^) $(MLX_FLAGS) -o $(@) $(LIBFT) -fsanitize=address
+			@$(CC) $(CFLAGS) $(^) $(MLX_FLAGS) -o $(@) $(LIBFT) -fsanitize=address
 
 clean:
 			@rm -f

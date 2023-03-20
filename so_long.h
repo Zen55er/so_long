@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 10:45:43 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/20 10:53:09 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:16:00 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,13 @@ int		free_all(t_data *data, int window, int images, int images2);
 /*movement*/
 void	wait(t_data *data);
 void	display_moves(t_data *data, int moves);
-void	step_cases(t_data *data, int x, int y);
+void	step_cases(t_data *data);
 void	dead(t_data *data);
 void	step(t_data *data, int x, int y);
 
 /*enemy*/
 t_coord	get_dir(t_data *data);
-void	enemy_step_cases(t_data *data, int x, int y);
+void	enemy_step_cases(t_data *data);
 void	enemy_step(t_data *data, t_coord dir);
 int		test_step(t_data *data, int x, int y);
 void	patrol(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: gacorrei <gacorrei@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 09:39:52 by gacorrei          #+#    #+#             */
-/*   Updated: 2023/03/10 10:43:14 by gacorrei         ###   ########.fr       */
+/*   Updated: 2023/03/20 13:15:32 by gacorrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_coord	get_dir(t_data *data)
 }
 
 /*Handles special cases for walking over exit*/
-void	enemy_step_cases(t_data *data, int x, int y)
+void	enemy_step_cases(t_data *data)
 {
 	if (data->map[data->enemy_pos.x][data->enemy_pos.y] == 'E')
 		mlx_put_image_to_window(data->init, data->window,
@@ -64,7 +64,7 @@ void	enemy_step(t_data *data, t_coord dir)
 			data->images->floor, data->enemy_pos.y * P, data->enemy_pos.x * P);
 	data->enemy_pos.x += dir.x;
 	data->enemy_pos.y += dir.y;
-	enemy_step_cases(data, dir.x, dir.y);
+	enemy_step_cases(data);
 	return ;
 }
 
