@@ -89,13 +89,11 @@ int		count_coll(char **map, int x, int y);
 int		count_enemies(char **map, int x, int y);
 
 /*window*/
-int		startup(char **map, t_coord size);
-
-/*window_utils*/
 int		no_event(t_data *data);
 int		close_window(t_data *data);
 int		key_release(int key, t_data *data);
 void	open_exit(t_data *data);
+int		startup(char **map, t_coord size);
 
 /*images*/
 int		open_images(t_data *data);
